@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="./css/sm.min.css">
+        <link rel="stylesheet" href="./css/todolist.css">
+        <link rel="stylesheet" href="./fonts/ratchicons.ttf">
+        <link rel="stylesheet" href="./fonts/ratchicons.woff">
+    </head>
+    <body>
+        <div id="app">
+            <header class="bar bar-nav">
+                <a class="icon icon-me pull-left"></a>
+                <a class="icon icon-edit pull-right" @click="openEdit"></a>
+                <h1 class="title">APP</h1>
+            </header>
+            <!-- 内容区域 -->
+            <div class="content">
+                <div v-if="todoList.length !=0">
+                    <div class="card" v-for="(item,index) in newtodoList" :id="item.todoID">
+                        <div class="card-content">
+                            <div class="card-content-inner">
+                                <p>{{ item.todoTask }}</p>
+                                <div class="editbtn">
+                                    <button class="button button-success" :class="{'button-fill':item.todoFlag}" @click="item.todoFlag = !item.todoFlag">
+                                        <span class="icon icon-check"></span>
+                                    </button>
+                                    <button class="button button-fill button-danger" @click="checkFinish(index,item.todoFlag)">
+                                        <span class="icon icon-remove"></span>
+                                    </button>
+                                </div>
+                                <p v-if="item.todoFlag">已完成</p>
+                                <p v-else>未完成</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" v-else>
+                    <div class="card-content">
+                        <div class="card-content-inner">您还没有待办事件，去编辑中添加待办事件。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部按钮 -->
+            <div class="footBtn">
+                <button class="btn" v-for="item in kinds" :class="[item.style,item.content === type?'btn-fill':'']" @click="type=item.content">{{ item.content }}</button>
+            </div>
+
+
+            <!-- 输入弹窗 -->
+            <div class="editInp" v-if="editFlag" @click.self="closeEdit">
+                <div class="content">
+                    <input type="text" placeholder="请输入您的任务内容" v-model="editInput">
+                    <div class="btn1">
+                        <button class="button button-fill button-warning" @click="closeEdit">取消</button>
+                        <button class="button button-fill" @click="checkNull">确定</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 删除确认弹出框 -->
+            <div class="editInp" @click.self="removeFlag = false" v-if="removeFlag">
+                <div class="content">
+                    <p>您确定要删除吗？</p>
+                    <div class="btn1">
+                        <button class="button button-fill button-warning" @click="removeFlag = false">取消</button>
+                        <button class="button button-fill" @click="removeTask(removeIndex)">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/vue.js"></script>
+        <script src="./js/todolist.js"></script>
+    </body>
+</html>

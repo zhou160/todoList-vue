@@ -1,0 +1,95 @@
+html,body,#app{
+    height: 100%;
+}
+
+.content .editbtn{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+/* 编辑功能弹窗 */
+.editInp{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.3);
+    z-index: 10;
+}
+
+.editInp .content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 95%;
+    height: 30%;
+    background: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.editInp .content input{
+    border:1px solid #ccc;
+    padding: 8px;
+}
+
+.editInp .content .btn1{
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+
+/* 控制底部按钮样式 */
+.footBtn{
+    position: fixed;
+    left: 0;
+    width: 100%;
+    bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.btn{
+    border:none;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    line-height: 50px;
+    border: 1px solid #ccc; 
+    border-radius: 40px;
+}
+.btn.btn-primary{
+    border-color: blue;
+    color: blue;
+}
+.btn.btn-primary.btn-fill{
+    background: blue;
+    color: white;
+}
+
+.btn.btn-danger{
+    border-color: red;
+    color: red;
+}
+.btn.btn-danger.btn-fill{
+    background: red;
+    color: white;
+}
+
+.btn.btn-warning{
+    border-color: yellow;
+    color: yellow;
+}
+.btn.btn-warning.btn-fill{
+    background: yellow;
+    color: white;
+}
